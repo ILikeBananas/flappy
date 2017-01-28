@@ -1,10 +1,13 @@
 let flappy;
 let pipe;
+let box;
 let dead = false;
+let won = false;
 function setup() {
   createCanvas(400,600);
   flappy = new Bird();
   pipe = new Pipe();
+  box = new Box("Axelle", pipe);
 }
 
 function draw() {
@@ -15,14 +18,23 @@ function draw() {
     fill("white");
     return;
   }
+  if(won){
+    background(0);
+    textSize(50);
+    text(box.message, 50, 50);
+    fill("white");
+    return;
+  }
   // Updating objects
   flappy.update();
   pipe.update();
+  box.update();
 
   if(pipe.hits(flappy)){
     console.log("game over");
     gameOver();
   }
+  box.hits(flappy);
 
   //clean the background
   background(0);
@@ -30,6 +42,7 @@ function draw() {
   // Show the elements
   flappy.show();
   pipe.show();
+  box.show();
 
   // Creating new pipes
   if(pipe.x < -20){
@@ -56,5 +69,11 @@ function gameOver () {
 function reset(){
   pipe = new Pipe();
   flappy = new Bird();
+  box.setLocation();
   dead = true;
+}
+
+function win(){
+  won = true;
+  document.getElementById("swag").innerHTML = "Joyeux anniversaire";
 }
