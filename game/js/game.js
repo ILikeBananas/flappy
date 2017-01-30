@@ -75,5 +75,5 @@ function reset(){
 
 function win(){
   won = true;
-  document.getElementById("swag").innerHTML = "Joyeux anniversaire";
+  document.getElementById("swag").innerHTML = "Joyeux anniversair";
 }

@@ -31,6 +31,7 @@ class Box {
     while(this.x - pipe.x < 30){
       this.x += random(400);
     }
+    this.y = random(height);
   }
 
   hits(bird){
@@ -43,13 +44,13 @@ class Box {
   }
 
   nextLetter(){
-    if(this.letterI > this.message.length -1){
+    if(this.letterI == this.message.length -1){
       win();
       console.log("win");
     }
-    document.getElementById("swag").innerHTML += this.letter;
+    document.querySelector("#swag").innerHTML += this.letter;
     this.letterI++;
-    this.letter[this.letterI];
+    this.letter = this.message[this.letterI];
   }
 
 
